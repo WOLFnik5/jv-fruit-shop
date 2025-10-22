@@ -1,7 +1,6 @@
-package core.basesyntax.service.impl;
+package core.basesyntax.service;
 
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.service.DataConverter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +23,12 @@ public class DataConverterImpl implements DataConverter {
             transaction.setOperation(FruitTransaction.Operation.fromCode(parts[0].trim()));
             transaction.setFruit(parts[1].trim());
             transaction.setQuantity(Integer.parseInt(parts[2].trim()));
+            int qty = Integer.parseInt(parts[2].trim());
+            if (qty < 0) {
+                throw new IllegalArgumentException("Negative quantity not allowed in line "
+                        + (i + 1));
+            }
+            transaction.setQuantity(qty);
             result.add(transaction);
         }
         return result;

@@ -1,7 +1,6 @@
-package core.basesyntax.service.impl;
+package core.basesyntax.service;
 
 import core.basesyntax.db.Storage;
-import core.basesyntax.service.ReportGenerator;
 import java.util.Map;
 import java.util.stream.Collectors;
 

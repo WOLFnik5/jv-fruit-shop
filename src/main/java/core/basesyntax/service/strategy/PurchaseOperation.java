@@ -1,15 +1,21 @@
-package core.basesyntax.service.operation;
+package core.basesyntax.service.strategy;
 
-import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
-import core.basesyntax.service.OperationHandler;
+import java.util.Map;
 
 public class PurchaseOperation implements OperationHandler {
 
     @Override
-    public void apply(FruitTransaction transaction) {
+    public void apply(FruitTransaction transaction, Map<String, Integer> fruits) {
+        if (transaction == null) {
+            throw new IllegalArgumentException("Transaction cannot be null");
+        }
+        if (transaction.getQuantity() < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative: " + transaction);
+        }
+
         String fruit = transaction.getFruit();
-        int current = Storage.FRUITS.getOrDefault(fruit, 0);
+        int current = fruits.getOrDefault(fruit, 0);
         int newQuantity = current - transaction.getQuantity();
 
         if (newQuantity < 0) {
@@ -23,6 +29,6 @@ public class PurchaseOperation implements OperationHandler {
                     + " available.");
         }
 
-        Storage.FRUITS.put(fruit, newQuantity);
+        fruits.put(fruit, newQuantity);
     }
 }
