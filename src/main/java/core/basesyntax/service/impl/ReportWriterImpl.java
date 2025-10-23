@@ -11,12 +11,12 @@ import java.nio.file.Paths;
 public class ReportWriterImpl implements ReportWriter {
 
     public void write(String resultingReport, String path) {
-        Path p = Paths.get(path);
+        Path filePath = Paths.get(path);
         try {
-            if (p.getParent() != null) {
-                Files.createDirectories(p.getParent());
+            if (filePath.getParent() != null) {
+                Files.createDirectories(filePath.getParent());
             }
-            try (BufferedWriter bw = Files.newBufferedWriter(p, StandardCharsets.UTF_8)) {
+            try (BufferedWriter bw = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8)) {
                 bw.write(resultingReport);
                 bw.flush();
             }

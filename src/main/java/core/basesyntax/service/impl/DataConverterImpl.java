@@ -20,17 +20,16 @@ public class DataConverterImpl implements DataConverter {
             if (parts.length != 3) {
                 throw new RuntimeException("Bad csv line at " + i + ": " + line);
             }
-            FruitTransaction transaction = new FruitTransaction();
-            transaction.setOperation(FruitTransaction.Operation.fromCode(parts[0].trim()));
-            transaction.setFruit(parts[1].trim());
-            transaction.setQuantity(Integer.parseInt(parts[2].trim()));
-            int qty = Integer.parseInt(parts[2].trim());
-            if (qty < 0) {
-                throw new IllegalArgumentException("Negative quantity not allowed in line "
+            FruitTransaction.Operation operation = FruitTransaction.Operation
+                    .fromCode(parts[0].trim());
+            String fruit = parts[1].trim();
+            int quantity = Integer.parseInt(parts[2].trim());
+            if (quantity < 0) {
+                throw new IllegalArgumentException(
+                        "Negative quantity not allowed in line "
                         + (i + 1));
             }
-            transaction.setQuantity(qty);
-            result.add(transaction);
+            result.add(new FruitTransaction(operation, fruit, quantity));
         }
         return result;
     }

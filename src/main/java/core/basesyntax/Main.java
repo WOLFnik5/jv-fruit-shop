@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
-        final String inputReport = "src/main/resources/reportToRead.csv";
-        final String finalReport = "src/main/resources/finalReport.csv";
+    private static final String INPUT_REPORT = "src/main/resources/reportToRead.csv";
+    private static final String FINAL_REPORT = "src/main/resources/finalReport.csv";
 
+    public static void main(String[] args) {
         ReportReader reader = new ReportReaderImpl();
-        List<String> lines = reader.read(inputReport);
+        List<String> lines = reader.read(INPUT_REPORT);
 
         DataConverter converter = new DataConverterImpl();
 
@@ -49,6 +49,6 @@ public class Main {
         String resultingReport = generator.build(fruits);
 
         ReportWriter writer = new ReportWriterImpl();
-        writer.write(resultingReport, finalReport);
+        writer.write(resultingReport, FINAL_REPORT);
     }
 }

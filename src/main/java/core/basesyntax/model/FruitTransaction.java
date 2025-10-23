@@ -11,32 +11,16 @@ public class FruitTransaction {
         this.quantity = quantity;
     }
 
-    public FruitTransaction() {
-
-    }
-
     public Operation getOperation() {
         return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
     }
 
     public String getFruit() {
         return fruit;
     }
 
-    public void setFruit(String fruit) {
-        this.fruit = fruit;
-    }
-
     public int getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public enum Operation {
@@ -56,9 +40,9 @@ public class FruitTransaction {
         }
 
         public static Operation fromCode(String code) {
-            for (Operation op : values()) {
-                if (op.code.equalsIgnoreCase(code)) {
-                    return op;
+            for (Operation operation : values()) {
+                if (operation.code.equalsIgnoreCase(code)) {
+                    return operation;
                 }
             }
             throw new IllegalArgumentException("Unknown operation code: " + code);
