@@ -1,6 +1,8 @@
-package core.basesyntax.service;
+package core.basesyntax.service.impl;
 
 import core.basesyntax.model.FruitTransaction;
+import core.basesyntax.service.ShopService;
+import core.basesyntax.service.strategy.OperationHandler;
 import core.basesyntax.service.strategy.OperationStrategy;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +27,8 @@ public class ShopServiceImpl implements ShopService {
             if (transaction == null) {
                 throw new IllegalArgumentException("Transaction cannot be null");
             }
-            strategy.get(transaction.getOperation()).apply(transaction, fruits);
+            OperationHandler handler = strategy.get(transaction.getOperation());
+            handler.apply(fruits, transaction);
         }
         return fruits;
     }

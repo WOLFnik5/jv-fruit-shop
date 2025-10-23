@@ -6,7 +6,7 @@ import java.util.Map;
 public class BalanceOperation implements OperationHandler {
 
     @Override
-    public void apply(FruitTransaction transaction, Map<String, Integer> fruits) {
+    public void apply(Map<String, Integer> fruits, FruitTransaction transaction) {
         fruits.put(transaction.getFruit(), transaction.getQuantity());
     }
 }

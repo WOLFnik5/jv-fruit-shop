@@ -4,5 +4,5 @@ import core.basesyntax.model.FruitTransaction;
 import java.util.Map;
 
 public interface OperationHandler {
-    void apply(FruitTransaction transaction, Map<String, Integer> fruits);
+    void apply(Map<String, Integer> fruits, FruitTransaction transaction);
 }
