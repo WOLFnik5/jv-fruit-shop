@@ -35,10 +35,6 @@ public class FruitTransaction {
             this.code = code;
         }
 
-        public String getCode() {
-            return code;
-        }
-
         public static Operation fromCode(String code) {
             for (Operation operation : values()) {
                 if (operation.code.equalsIgnoreCase(code)) {
